@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Dropdown(children: JSX.Element, title: String) {
     const [open, setOpen] = useState(false);
@@ -9,16 +9,17 @@ export default function Dropdown(children: JSX.Element, title: String) {
                 setOpen(false);
             }
         }
-        document.addEventListener("mousedown", handler)
+        window.addEventListener("click", handler);
     })
 
     return (
         <div>
             <button onClick={() => setOpen(open)}>{title}</button>
-            {
-                open ?
+            {open ?
                 <div>
-                    {children}
+                    {children.key(([keys]) => (
+                        <button>{keys}</button>
+                    ))}
                 </div>
                 :
                 null

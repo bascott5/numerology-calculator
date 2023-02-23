@@ -1,7 +1,12 @@
+body {
+    background-color: darkmagenta;
+}
+
 .title {
+    color: plum;
     text-align: center;
-    padding: 20vh;
-    padding: 60px;
-    color: white;
-    background-color: #00004d;
+}
+
+.main {
+    background-color: plum;
 }
