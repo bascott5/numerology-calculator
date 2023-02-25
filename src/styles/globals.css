@@ -4,9 +4,13 @@ body {
 
 .title {
     color: plum;
-    text-align: center;
+    text-decoration: underline;
 }
 
 .main {
     background-color: plum;
+}
+
+.button {
+    border-style: none;
 }

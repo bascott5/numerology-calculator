@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 
-export default function Dropdown(children: JSX.Element, title: String) {
-    const [open, setOpen] = useState(false);
-
+export default function Dropdown(children: any, title: String) {
     useEffect(() => {
         const handler = (e: Event) => {
-            if(e.target) {
+            if(!menuRef.current.contains(e.target)) {
                 setOpen(false);
             }
         }
-        window.addEventListener("click", handler);
+        window.addEventListener("mousedown", handler);
+        return() => {
+            document.removeEventListener("mousedown", handler);
+        }
     })
+
+    let menuRef = useRef<any>();
+
+    const [open, setOpen] = useState(false);
 
     return (
         <div>
             <button onClick={() => setOpen(open)}>{title}</button>
             {open ?
-                <div>
-                    {children.key(([keys]) => (
-                        <button>{keys}</button>
-                    ))}
+                <div ref={menuRef}>
+                    <ul>{children}</ul>
                 </div>
                 :
                 null
