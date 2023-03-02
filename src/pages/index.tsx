@@ -9,7 +9,7 @@ import CharacterNumber from '@/components/character-number'
 import Dropdown from '@/components/dropdown'
 import styles from '@/styles/Home.module.css'
 
-export default function Home() {
+export default function Home: React.FC() {
   const handleNameChange = (event: any) => {
     user.name = event.target.value;
   };
@@ -19,13 +19,13 @@ export default function Home() {
   };
 
   const handleBdayMonthChange = () => {
-    month.map((keys) => (
+    return month.map((keys) => (
       <button onClick={() => setUser(user.bday[0].replace(user.bday[0], keys))}>{keys}</button>
     ))
   }
 
   const handleBdayDayChange = () => {
-    day.map((keys) => (
+    return day.map((keys) => (
       <button onClick={() => setUser(user.bday[1].replace(user.bday[1], keys))}>{keys}</button>
     ))
   }
@@ -36,7 +36,6 @@ export default function Home() {
   const day = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
   const month = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
-  //if (visible) {//add selected number to user.bday, with input adding year to user.bday using a substring}
   return (
     <div>
       <h1 className='title'>Pythagorean Numerology Calculator</h1>
@@ -50,10 +49,10 @@ export default function Home() {
       <p style={{color: "darkmagenta"}}>Birthday (mm/dd/yyyy)</p>
       <input type="text" id="bday" name="bday" onChange={handleBdayYearChange}/>
       <Dropdown>
-        {handleBdayMonthChange}
+        {handleBdayMonthChange()}
       </Dropdown>
       <Dropdown>
-        {handleBdayDayChange}
+        {handleBdayDayChange()}
       </Dropdown>
       <button className='button' onClick={() => setVisible(visible => true)}>Calculate!</button>
       {visible ?
